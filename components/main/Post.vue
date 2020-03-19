@@ -51,10 +51,6 @@ export default {
     align-items: center;
   }
 
-  // .post-body {
-  //   margin-bottom: 1rem;
-  // }
-
   .post-img {
     width: 100%;
     height: auto;

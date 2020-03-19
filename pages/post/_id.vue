@@ -26,14 +26,30 @@
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa consectetur dolore doloremque, officiis, possimus dicta quo rerum atque quam quod ad ut saepe dolores architecto alias necessitatibus consequatur sed ratione!</p>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa consectetur dolore doloremque, officiis, possimus dicta quo rerum atque quam quod ad ut saepe dolores architecto alias necessitatibus consequatur sed ratione!</p>
     </main>
-    <footer />
+    <footer>
+      <div v-if="true" class="comments">
+        <app-comment
+          v-for="comment in 4"
+          :key="comment"
+          :comment="comment"
+        />
+      </div>
+      <div v-else class="text-center">
+        Комментариев нет
+      </div>
+    </footer>
   </article>
 </template>
 
 <script>
+import AppComment from '@/components/main/Comment'
+
 export default {
   validate ({ params }) {
     return Boolean(params.id)
+  },
+  components: {
+    AppComment
   }
 }
 </script>

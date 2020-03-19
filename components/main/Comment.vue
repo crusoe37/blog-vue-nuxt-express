@@ -15,7 +15,8 @@
 
 <script>
 export default {
-  // props: ['comment']
+  // eslint-disable-next-line vue/require-prop-types
+  props: ['comment']
 }
 </script>
 

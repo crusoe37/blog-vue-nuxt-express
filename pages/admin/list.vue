@@ -72,7 +72,6 @@ export default {
         })
         await this.$store.dispatch('post/remove', id)
         this.posts = this.posts.filter(post => post._id !== id)
-
         this.$message.success('Пост удален')
       } catch (e) {}
     }

@@ -37,6 +37,23 @@
       </div>
     </el-dialog>
 
+    <el-upload
+      ref="upload"
+      class="mb"
+      drag
+      action="https://jsonplaceholder.typicode.com/posts/"
+      :on-change="handleImageChange"
+      :auto-upload="false"
+    >
+      <i class="el-icon-upload" />
+      <div class="el-upload__text">
+        Перетащите изображение<em> или нажмите</em>
+      </div>
+      <div slot="tip" class="el-upload__tip">
+        файлы jpg/png до 500kb
+      </div>
+    </el-upload>
+
     <el-form-item>
       <el-button
         type="primary"
@@ -56,6 +73,7 @@ export default {
   middleware: ['admin-auth'],
   data () {
     return {
+      image: null,
       previewDialog: false,
       loading: false,
       controls: {
@@ -73,25 +91,33 @@ export default {
     }
   },
   methods: {
+    handleImageChange (file, fileList) {
+      this.image = file.raw
+    },
     onSubmit () {
       this.$refs.form.validate(async (valid) => {
-        if (valid) {
+        if (valid && this.image) {
           this.loading = true
 
           const formData = {
             title: this.controls.title,
-            text: this.controls.text
+            text: this.controls.text,
+            image: this.image
           }
           try {
             await this.$store.dispatch('post/create', formData)
             this.controls.title = ''
             this.controls.text = ''
+            this.image = null
+            this.$refs.upload.clearFiles()
             this.$message.success('Пост создан')
           } catch (e) {
             console.log('Error create post', e)
           } finally {
             this.loading = false
           }
+        } else {
+          this.$message.warning('Форма не валидна')
         }
       })
     }

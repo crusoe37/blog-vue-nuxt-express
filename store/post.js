@@ -26,6 +26,15 @@ export const actions = {
       }, 1000)
     })
   },
+
+  async create ({}, { title, text }) {
+    return await new Promise(resolve => {
+      setTimeout(() => {
+        resolve(console.log('Created post', title, text))
+      }, 1000)
+    })
+  },
+
   // async remove({}, id){
   // }
 

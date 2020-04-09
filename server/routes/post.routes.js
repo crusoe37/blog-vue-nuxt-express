@@ -5,7 +5,7 @@ const ctr = require('../controllers/post.controller')
 const router = Router()
 
 // Admin
-// Path /api/auth/admin
+// Path /api/post/
 
 router.post(
   '/admin',

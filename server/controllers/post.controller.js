@@ -4,7 +4,7 @@ module.exports.create = async (req, res) => {
   const post = new Post({
     title: req.body.title,
     text: req.body.text,
-    imageUrl: `/${req.file.fileName}`
+    imageUrl: `/${req.file.filename}`
   })
 
   try {
@@ -53,7 +53,7 @@ module.exports.update = async (req, res) => {
 module.exports.remove = async (req, res) => {
   try {
     await Post.deleteOne({
-      id: req.params.id
+      _id: req.params.id
     })
     res.json({ message: 'Пост удален' })
   } catch (e) {

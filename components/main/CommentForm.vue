@@ -63,8 +63,7 @@ export default {
             text: this.controls.text,
             postId: ''
           }
-
-          console.log('!!!!!!', formData)
+          console.log(formData)
 
           try {
             setTimeout(() => {

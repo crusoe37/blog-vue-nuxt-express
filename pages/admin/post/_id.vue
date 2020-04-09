@@ -60,6 +60,7 @@ export default {
     const post = await store.dispatch('post/fetchAdminById', params.id)
     return { post }
   },
+
   data () {
     return {
       loading: false,
@@ -73,6 +74,10 @@ export default {
       }
     }
   },
+  mounted () {
+    this.controls.text = this.post.text
+  },
+
   methods: {
     onSubmit () {
       this.$refs.form.validate(async (valid) => {
@@ -94,6 +99,7 @@ export default {
       })
     }
   },
+
   head () {
     return {
       title: `Пост | ${this.post.title}`

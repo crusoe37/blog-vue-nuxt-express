@@ -43,6 +43,6 @@ router.delete(
 
 router.get('/', ctr.getAll)
 router.get('/:id', ctr.getById)
-router.put('/:id', ctr.getView)
+router.put('/add/view/:id', ctr.addView)
 
 module.exports = router

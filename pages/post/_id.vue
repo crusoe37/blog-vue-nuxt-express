@@ -2,7 +2,7 @@
   <article class="post">
     <header class="post-header">
       <div class="post-title">
-        <h1>Post title</h1>
+        <h1>{{ post.title }}</h1>
         <nuxt-link to="/">
           <i class="el-icon-back" />
         </nuxt-link>
@@ -10,21 +10,22 @@
       <div class="post-info">
         <small>
           <i class="el-icon-time" />
-          {{ new Date().toLocaleString() }}
+          {{ new Date(post.date).toLocaleString() }}
         </small>
         <small>
           <i class="el-icon-view" />
-          12
+          {{ post.views }}
         </small>
       </div>
       <div class="post-image">
-        <img src="https://vgolos.com.ua/wp-content/uploads/2019/10/kyiv.png" alt="post image">
+        <img
+          :src="post.imageUrl"
+          alt="post image"
+        >
       </div>
     </header>
     <main class="post-content">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa consectetur dolore doloremque, officiis, possimus dicta quo rerum atque quam quod ad ut saepe dolores architecto alias necessitatibus consequatur sed ratione!</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa consectetur dolore doloremque, officiis, possimus dicta quo rerum atque quam quod ad ut saepe dolores architecto alias necessitatibus consequatur sed ratione!</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa consectetur dolore doloremque, officiis, possimus dicta quo rerum atque quam quod ad ut saepe dolores architecto alias necessitatibus consequatur sed ratione!</p>
+      <vue-markdown>{{ post.text }}</vue-markdown>
     </main>
     <footer>
       <app-comment-form
@@ -32,9 +33,9 @@
         @created="createCommentHandler"
       />
 
-      <div v-if="true" class="comments">
+      <div v-if="post.comments.length" class="comments">
         <app-comment
-          v-for="comment in 4"
+          v-for="comment in post.comments"
           :key="comment"
           :comment="comment"
         />
@@ -56,6 +57,13 @@ export default {
   },
   components: {
     AppComment, AppCommentForm
+  },
+  async asyncData ({ store, params }) {
+    const post = await store.dispatch('post/fetchById', params.id)
+    await store.dispatch('post/addView', post)
+    return {
+      post: { ...post, views: ++post.views }
+    }
   },
   data () {
     return {

@@ -38,6 +38,14 @@ router.delete(
   ctr.remove
 )
 
+// Analytic
+
+router.get(
+  '/admin/get/analytics',
+  passport.authenticate('jwt', { session: false }),
+  ctr.getAnalytics
+)
+
 // Public
 // Path /api/post/
 

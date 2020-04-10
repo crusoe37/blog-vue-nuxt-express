@@ -21,6 +21,12 @@ router.get(
 )
 
 router.get(
+  '/admin/get/analytics',
+  passport.authenticate('jwt', { session: false }),
+  ctr.getAnalytics
+)
+
+router.get(
   '/admin/:id',
   passport.authenticate('jwt', { session: false }),
   ctr.getById
@@ -36,14 +42,6 @@ router.delete(
   '/admin/:id',
   passport.authenticate('jwt', { session: false }),
   ctr.remove
-)
-
-// Analytic
-
-router.get(
-  '/admin/get/analytics',
-  passport.authenticate('jwt', { session: false }),
-  ctr.getAnalytics
 )
 
 // Public

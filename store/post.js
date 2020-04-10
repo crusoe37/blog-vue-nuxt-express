@@ -80,9 +80,8 @@ export const actions = {
     try {
       return await this.$axios.$get('/api/post/admin/get/analytics')
     } catch (e) {
-      // commit('setError', e, { root: true })
-      // throw e
-      console.log(e)
+      commit('setError', e, { root: true })
+      throw e
     }
   }
 }

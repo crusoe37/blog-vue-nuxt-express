@@ -89,7 +89,6 @@ module.exports.getAnalytics = async (req, res) => {
         data: posts.map(post => post.views)
       }
     }
-
     res.json(json)
   } catch (e) {
     res.status(500).json(e)

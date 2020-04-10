@@ -9,7 +9,7 @@
 
       <small>
         <i class="el-icon-time" />
-        {{ new Date(post.date).toLocaleString() }}
+        {{ post.date | date('date') }}
       </small>
     </header>
     <div class="post-body">

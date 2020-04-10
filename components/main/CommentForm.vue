@@ -35,6 +35,12 @@
 
 <script>
 export default {
+  props: {
+    postId: {
+      type: String,
+      required: true
+    }
+  },
   data () {
     return {
       loading: false,
@@ -54,22 +60,22 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.$refs.form.validate((valid) => {
+      this.$refs.form.validate(async (valid) => {
         if (valid) {
           this.loading = true
 
           const formData = {
             name: this.controls.name,
             text: this.controls.text,
-            postId: ''
+            postId: this.postId
           }
-          console.log(formData)
 
           try {
-            setTimeout(() => {
-              this.$message.success('Комментарий добавлен')
-              this.$emit('created')
-            }, 1500)
+            const newComment = await this.$store.dispatch('comment/create', formData)
+            console.log('newComment', newComment)
+
+            this.$message.success('Комментарий добавлен')
+            this.$emit('created', newComment)
           } catch (e) {
             this.loading = false
           }

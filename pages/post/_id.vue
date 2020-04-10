@@ -30,13 +30,14 @@
     <footer>
       <app-comment-form
         v-if="canAddComment"
+        :post-id="post._id"
         @created="createCommentHandler"
       />
 
       <div v-if="post.comments.length" class="comments">
         <app-comment
           v-for="comment in post.comments"
-          :key="comment"
+          :key="comment._id"
           :comment="comment"
         />
       </div>
@@ -71,7 +72,8 @@ export default {
     }
   },
   methods: {
-    createCommentHandler () {
+    createCommentHandler (comment) {
+      this.post.comments.unshift(comment)
       this.canAddComment = false
     }
   }

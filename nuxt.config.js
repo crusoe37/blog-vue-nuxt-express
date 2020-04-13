@@ -53,6 +53,11 @@ module.exports = {
   /*
   ** Build configuration
   */
+
+  env: {
+    appName: 'SSR Blog'
+  },
+
   build: {
     transpile: [/^element-ui/],
     /*

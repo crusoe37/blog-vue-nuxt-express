@@ -23,6 +23,11 @@ export default {
     return { views, comments }
   },
   layout: 'admin',
-  middleware: ['admin-auth']
+  middleware: ['admin-auth'],
+  head () {
+    return {
+      title: `Аналитика | ${process.env.appName}`
+    }
+  }
 }
 </script>

@@ -75,6 +75,11 @@ export default {
         this.$message.success('Пост удален')
       } catch (e) {}
     }
+  },
+  head () {
+    return {
+      title: `Все посты | ${process.env.appName}`
+    }
   }
 }
 </script>

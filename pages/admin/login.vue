@@ -93,6 +93,11 @@ export default {
         }
       })
     }
+  },
+  head () {
+    return {
+      title: `Вход в панель администратора | ${process.env.appName}`
+    }
   }
 }
 </script>

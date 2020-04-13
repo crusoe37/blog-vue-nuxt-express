@@ -79,6 +79,11 @@ export default {
         }
       })
     }
+  },
+  head () {
+    return {
+      title: `Создать пользователя | ${process.env.appName}`
+    }
   }
 }
 </script>

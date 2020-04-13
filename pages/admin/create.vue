@@ -121,6 +121,11 @@ export default {
         }
       })
     }
+  },
+  head () {
+    return {
+      title: `Новый пост | ${process.env.appName}`
+    }
   }
 }
 </script>

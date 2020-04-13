@@ -34,25 +34,16 @@ module.exports = {
   ** Nuxt.js dev-modules
   */
   buildModules: [
-    // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module'
   ],
-  /*
-  ** Nuxt.js modules
-  */
+
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/pwa'
   ],
-  /*
-  ** Axios module configuration
-  ** See https://axios.nuxtjs.org/options
-  */
+
   axios: {
   },
-  /*
-  ** Build configuration
-  */
 
   env: {
     appName: 'SSR Blog'
@@ -60,9 +51,6 @@ module.exports = {
 
   build: {
     transpile: [/^element-ui/],
-    /*
-    ** You can extend webpack config here
-    */
     extend (config, ctx) {
     }
   }
